@@ -1,4 +1,4 @@
-package com.dev.lsy.apiservice.web;
+package com.dev.lsy.apiservice.customer.web;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
