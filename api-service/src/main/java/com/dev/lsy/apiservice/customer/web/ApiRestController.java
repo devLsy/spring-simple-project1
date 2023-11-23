@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApiRestController {
 
     @GetMapping("/")
-    public String main() {
+    public String main() {  
+        log.info("안녕~");
         return "hello@@@@@@@@@";
     }
 }
