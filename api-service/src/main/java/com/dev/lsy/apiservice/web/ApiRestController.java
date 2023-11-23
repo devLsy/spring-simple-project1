@@ -12,6 +12,6 @@ public class ApiRestController {
 
     @GetMapping("/")
     public String main() {
-        return "hello!!!!!!!!!";
+        return "hello@@@@@@@@@";
     }
 }
