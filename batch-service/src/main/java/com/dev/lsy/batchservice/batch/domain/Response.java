@@ -1,4 +1,4 @@
-package com.dev.lsy.apiservice.cmmn;
+package com.dev.lsy.batchservice.batch.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,9 @@ public class Response<T> {
 
     private String code;
     private String msg;
+
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String err;
+
     private List<T> list;
 }
