@@ -21,6 +21,7 @@ public class CustomTasklet implements Tasklet {
         RestTemplate restTemplate = new RestTemplate();
         Customer response = restTemplate.getForObject(url, Customer.class);
 
+        log.info("url request~");
         log.info("response ==> [{}]", response);
 
         return (response != null ? RepeatStatus.FINISHED : RepeatStatus.CONTINUABLE);
