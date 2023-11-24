@@ -2,17 +2,26 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3307/metadb?serverTimezone=Asia/Seoul
     hikari:
-      username:
-      password:
+      username: batch
+      password: batch
       connectionTimeout: 10000
       maximum-pool-size: 15
       max-lifetime: 600000
       readOnly: false
       connection-test-query: SELECT 1
 
+  jpa:
+    hibernate:
+      ddl-auto: none
+      use-new-id-generator-mappings: false
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+
 mybatis:
   type-aliases-package: com.dev.lsy.apiservice.*.domain
-  mapper-locations: classpath:/mappers/*.xml
+  mapper-locations: classpath:/mappers/**/*.xml
 
 
 
