@@ -38,7 +38,7 @@ public class CustomerService {
             response.setMsg(ResultType.SUCCESS.getMsg());
             response.setList(customerList);
         } else {
-            response.setList(Collections.EMPTY_LIST);
+            response.setList(List.of());
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
