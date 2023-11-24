@@ -23,6 +23,7 @@ public class CustomRestController {
      */
     @GetMapping("")
     public ResponseEntity<?> main() throws Exception {
+        log.info("고객 목록 조회 호출됨.");
         return customerService.getCustomerList();
     }
 }
