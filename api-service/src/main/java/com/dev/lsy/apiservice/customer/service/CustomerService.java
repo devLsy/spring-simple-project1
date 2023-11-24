@@ -1,5 +1,7 @@
 package com.dev.lsy.apiservice.customer.service;
 
+import com.dev.lsy.apiservice.cmmn.Response;
+import com.dev.lsy.apiservice.cmmn.ResultType;
 import com.dev.lsy.apiservice.customer.domain.Customer;
 import com.dev.lsy.apiservice.customer.mapper.CustomerMapper;
 import lombok.RequiredArgsConstructor;
@@ -10,9 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Slf4j
@@ -29,16 +29,17 @@ public class CustomerService {
      */
     public ResponseEntity<?> getCustomerList() throws Exception{
 
-        Map<String, Object> resultMap = new HashMap<>();
+        Response response = new Response();
 
         List<Customer> customerList = customerMapper.selectCustomerList();
 
         if (customerList != null && customerList.size() > 0) {
-            resultMap.put("code", "1");
-            resultMap.put("list", customerList);
+            response.setCode(ResultType.SUCCESS.getCode());
+            response.setMsg(ResultType.SUCCESS.getMsg());
+            response.setList(customerList);
         } else {
-            resultMap.put("list", Collections.EMPTY_LIST);
+            response.setList(Collections.EMPTY_LIST);
         }
-        return new ResponseEntity<>(resultMap, HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

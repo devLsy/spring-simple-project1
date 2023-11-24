@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/customer")
-public class ApiRestController {
+public class CustomRestController {
 
     private final CustomerService customerService;
 
