@@ -23,6 +23,8 @@ mybatis:
   type-aliases-package: com.dev.lsy.apiservice.*.domain
   mapper-locations: classpath:/mappers/**/*.xml
 
+server:
+  port: 9090
 
 
 
