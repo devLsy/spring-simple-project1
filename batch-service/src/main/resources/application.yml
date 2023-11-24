@@ -20,4 +20,4 @@ spring:
       enabled: false
 
 rest-api:
-  url: localhost:9090/customer
+  url: http://localhost:9090/customer

@@ -9,16 +9,20 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+
 @Slf4j
 public class CustomTasklet implements Tasklet {
 
-    @Value("${rest-api.url}")
+//    @Value("${rest-api.url}")
+//    private URI url;
     private String url;
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 
         RestTemplate restTemplate = new RestTemplate();
+        url = "http://localhost:9090/customer";
         Customer response = restTemplate.getForObject(url, Customer.class);
 
         log.info("url request~");
