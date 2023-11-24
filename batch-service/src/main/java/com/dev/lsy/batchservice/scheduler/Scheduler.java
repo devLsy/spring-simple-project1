@@ -11,21 +11,32 @@ import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteExcep
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Component
 @EnableScheduling
 @Slf4j
 @RequiredArgsConstructor
 public class Scheduler {
 
     private final JobLauncher launcher;
-    private final Job batchJob;
+    private final Job batch1;
+    private final Job batch2;
 
-    @Scheduled(cron = "* 50 09 * * *")
-    public void jobRun() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
-        launcher.run(batchJob, new JobParametersBuilder()
-                .addString("date", "param_" + LocalDateTime.now().toString())
+    @Scheduled(cron = "0 22 10 * * *")
+    public void job1() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
+        launcher.run(batch1, new JobParametersBuilder()
+                .addString("date", "param1_" + LocalDateTime.now().toString())
+                .toJobParameters()
+        );
+    }
+
+    @Scheduled(cron = "0 0/1 * * * *")
+    public void job2() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
+        launcher.run(batch2, new JobParametersBuilder()
+                .addString("date", "param2_" + LocalDateTime.now().toString())
                 .toJobParameters()
         );
     }
