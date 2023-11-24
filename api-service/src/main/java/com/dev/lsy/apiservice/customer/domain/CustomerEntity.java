@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name = "customer")
+@Entity(name = "mappers/customer")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
