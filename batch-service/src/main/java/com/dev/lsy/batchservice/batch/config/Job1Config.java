@@ -1,8 +1,8 @@
-package com.dev.lsy.batchservice.config;
+package com.dev.lsy.batchservice.batch.config;
 
-import com.dev.lsy.batchservice.domain.Customer;
-import com.dev.lsy.batchservice.listener.StopWatchjobListener;
-import com.dev.lsy.batchservice.mapper.CustomRowMapper;
+import com.dev.lsy.batchservice.batch.domain.Customer;
+import com.dev.lsy.batchservice.batch.listener.StopWatchjobListener;
+import com.dev.lsy.batchservice.batch.mapper.CustomRowMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -29,7 +29,7 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 @Configuration
-public class JobConfig {
+public class Job1Config {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
@@ -41,14 +41,13 @@ public class JobConfig {
      * @throws Exception
      */
     @Bean
-    public Job job() throws Exception {
-        return jobBuilderFactory.get("batchJob")
+    public Job batch1() throws Exception {
+        return jobBuilderFactory.get("batch1")
                 .incrementer(new RunIdIncrementer())
-//                .start(step1())
-                .start(asyncStep1())
+                .start(batchStep1())
                 .listener(new StopWatchjobListener())
                 .build();
-        //api
+        //batch
     }
 
     /**
@@ -57,10 +56,10 @@ public class JobConfig {
      * @throws Exception
      */
     @Bean
-    public Step step1() throws Exception {
-        return stepBuilderFactory.get("step1")
+    public Step batchStep1() throws Exception {
+        return stepBuilderFactory.get("batchStep1")
                 .<Customer, Customer>chunk(100)
-                .reader(pagingItemReader())
+                .reader(pagingItemReader1())
                 .processor(customItemProcessor())
                 .writer(customItemWriter())
                 .build();
@@ -72,7 +71,7 @@ public class JobConfig {
     public Step asyncStep1() throws Exception{
         return stepBuilderFactory.get("asyncStep1")
                 .<Customer, Customer>chunk(100)
-                .reader(pagingItemReader())
+                .reader(pagingItemReader1())
                 //비동기 프로세서
                 .processor(asyncItemProcessor())
                 //비동기 라이터
@@ -136,7 +135,7 @@ public class JobConfig {
      * @return
      */
     @Bean
-    public JdbcPagingItemReader<Customer> pagingItemReader() {
+    public JdbcPagingItemReader<Customer> pagingItemReader1() {
         JdbcPagingItemReader<Customer> reader = new JdbcPagingItemReader<>();
 
         reader.setDataSource(dataSource);

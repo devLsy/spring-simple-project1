@@ -1,7 +1,7 @@
-package com.dev.lsy.batchservice.mapper;
+package com.dev.lsy.batchservice.batch.mapper;
 
 
-import com.dev.lsy.batchservice.domain.Customer;
+import com.dev.lsy.batchservice.batch.domain.Customer;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

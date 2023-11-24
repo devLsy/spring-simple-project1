@@ -16,4 +16,8 @@ spring:
     jdbc:
       initialize-schema: always
     job:
-      names: ${job.name:NONE}
+#      names: ${job.name:NONE}
+      enabled: false
+
+rest-api:
+  url: http://localhost:9090/customer

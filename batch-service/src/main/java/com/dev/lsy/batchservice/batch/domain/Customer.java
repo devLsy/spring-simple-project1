@@ -1,4 +1,4 @@
-package com.dev.lsy.batchservice.domain;
+package com.dev.lsy.batchservice.batch.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
