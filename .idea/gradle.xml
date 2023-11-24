@@ -6,8 +6,8 @@
       <GradleProjectSettings>
         <option name="delegatedBuild" value="false" />
         <option name="testRunner" value="PLATFORM" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/api-service" />
+        <option name="gradleJvm" value="zulu-11 (2)" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/api-service" />
@@ -17,7 +17,6 @@
       <GradleProjectSettings>
         <option name="delegatedBuild" value="false" />
         <option name="testRunner" value="PLATFORM" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/batch-service" />
         <option name="modules">
           <set>
