@@ -1,5 +1,6 @@
 package com.dev.lsy.apiservice.customer.web;
 
+import com.dev.lsy.apiservice.cmmn.Response;
 import com.dev.lsy.apiservice.customer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,7 @@ public class CustomRestController {
      * @throws Exception
      */
     @GetMapping("")
-    public ResponseEntity<?> main() throws Exception {
+    public ResponseEntity<Response> main() throws Exception {
         log.info("고객 목록 조회 호출됨.");
         return customerService.getCustomerList();
     }

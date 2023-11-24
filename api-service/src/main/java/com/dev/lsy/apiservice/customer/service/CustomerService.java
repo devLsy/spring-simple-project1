@@ -27,7 +27,7 @@ public class CustomerService {
      * @return
      * @throws Exception
      */
-    public ResponseEntity<?> getCustomerList() throws Exception{
+    public ResponseEntity<Response> getCustomerList() throws Exception{
 
         Response response = new Response();
 
