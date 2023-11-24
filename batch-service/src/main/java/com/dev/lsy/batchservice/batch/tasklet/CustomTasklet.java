@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CustomTasklet implements Tasklet {
 
-//    @Value("${rest-api.url}")
     private String url = "http://localhost:9090/customer";
 
     @Override
@@ -29,24 +28,32 @@ public class CustomTasklet implements Tasklet {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        Response<Customer> response = restTemplate.getForObject(url, Response.class);
+//        Response<Customer> response = restTemplate.getForObject(url, Response.class);
 
-        List<Customer> customerList = response.getList();
+        ResponseEntity<Response<Customer>> response = restTemplate.exchange(
+                       url,
+                       HttpMethod.GET,
+                       null,
+                       new ParameterizedTypeReference<Response<Customer>>() {}
+               );
+
+        List<Customer> customerList = response.getBody().getList();
 
         Customer newCustomer = new Customer();
         List<Customer> newCustomerList = new ArrayList<>();
 
         log.info("list ==> [{}]", customerList);
 
-//        List<Customer> newCustomerList = customerList.stream()
-//                .map(item -> new Customer(item.getId(), item.getFirstName() + "수정", item.getLastName() + "수정", item.getBirthdate()))
-//                .collect(Collectors.toList());
-//        for (Customer customer : customerList) {
-//            newCustomer.setFirstName(customer.getFirstName());
-//            newCustomer.setLastName(customer.getLastName());
-//            newCustomer.setBirthdate(customer.getBirthdate());
-//            newCustomerList.add(newCustomer);
-//        }
+        for (Customer customer : customerList) {
+            newCustomer = new Customer();
+            newCustomer.setFirstName(customer.getFirstName() + "수정");
+            newCustomer.setLastName(customer.getLastName() + "수정");
+            newCustomer.setBirthdate(customer.getBirthdate());
+            newCustomerList.add(newCustomer);
+        }
+
+        log.info("newCustomerList ==> [{}]", newCustomerList);
+
         return (response != null ? RepeatStatus.FINISHED : RepeatStatus.CONTINUABLE);
     }
 }
