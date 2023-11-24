@@ -12,11 +12,11 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Response {
+public class Response<T> {
 
     private String code;
     private String msg;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String err;
-    private List<?> list;
+    private List<T> list;
 }

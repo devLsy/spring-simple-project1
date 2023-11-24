@@ -14,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class CustomTasklet implements Tasklet {
@@ -27,16 +29,24 @@ public class CustomTasklet implements Tasklet {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        Response response = restTemplate.getForObject(url, Response.class);
-//        ResponseEntity<List<Customer>> response = restTemplate.exchange(
-//                url,
-//                HttpMethod.GET,
-//                null,
-//                new ParameterizedTypeReference<List<Customer>>() {});
+        Response<Customer> response = restTemplate.getForObject(url, Response.class);
 
-        log.info("url request ==> [{}]", url);
-        log.info("response ==> [{}]", response.getList());
+        List<Customer> customerList = response.getList();
 
+        Customer newCustomer = new Customer();
+        List<Customer> newCustomerList = new ArrayList<>();
+
+        log.info("list ==> [{}]", customerList);
+
+//        List<Customer> newCustomerList = customerList.stream()
+//                .map(item -> new Customer(item.getId(), item.getFirstName() + "수정", item.getLastName() + "수정", item.getBirthdate()))
+//                .collect(Collectors.toList());
+//        for (Customer customer : customerList) {
+//            newCustomer.setFirstName(customer.getFirstName());
+//            newCustomer.setLastName(customer.getLastName());
+//            newCustomer.setBirthdate(customer.getBirthdate());
+//            newCustomerList.add(newCustomer);
+//        }
         return (response != null ? RepeatStatus.FINISHED : RepeatStatus.CONTINUABLE);
     }
 }

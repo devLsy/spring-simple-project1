@@ -29,7 +29,7 @@ public class CustomerService {
      */
     public ResponseEntity<Response> getCustomerList() throws Exception{
 
-        Response response = new Response();
+        Response<Customer> response = new Response();
 
         List<Customer> customerList = customerMapper.selectCustomerList();
 
