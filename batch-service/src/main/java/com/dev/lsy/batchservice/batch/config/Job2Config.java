@@ -1,8 +1,9 @@
-package com.dev.lsy.batchservice.config;
+package com.dev.lsy.batchservice.batch.config;
 
-import com.dev.lsy.batchservice.domain.Customer;
-import com.dev.lsy.batchservice.listener.StopWatchjobListener;
-import com.dev.lsy.batchservice.mapper.CustomRowMapper;
+import com.dev.lsy.batchservice.batch.domain.Customer;
+import com.dev.lsy.batchservice.batch.listener.StopWatchjobListener;
+import com.dev.lsy.batchservice.batch.mapper.CustomRowMapper;
+import com.dev.lsy.batchservice.batch.tasklet.CustomTasklet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -10,7 +11,6 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.Order;
 import org.springframework.batch.item.database.support.MySqlPagingQueryProvider;
@@ -19,7 +19,6 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -52,15 +51,7 @@ public class Job2Config {
     @Bean
     public Step batchStep2() throws Exception {
         return stepBuilderFactory.get("batchStep2")
-                .<Customer, Customer>chunk(100)
-                .reader(pagingItemReader2())
-                .writer(new ItemWriter<Customer>() {
-                    @Override
-                    public void write(List<? extends Customer> items) throws Exception {
-                        log.info("this is writer~~~");
-                        items.forEach(i -> log.info("item ==> [{}]", i));
-                    }
-                })
+                .tasklet(new CustomTasklet())
                 .build();
     }
 

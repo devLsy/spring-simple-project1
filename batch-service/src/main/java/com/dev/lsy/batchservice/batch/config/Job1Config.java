@@ -1,8 +1,8 @@
-package com.dev.lsy.batchservice.config;
+package com.dev.lsy.batchservice.batch.config;
 
-import com.dev.lsy.batchservice.domain.Customer;
-import com.dev.lsy.batchservice.listener.StopWatchjobListener;
-import com.dev.lsy.batchservice.mapper.CustomRowMapper;
+import com.dev.lsy.batchservice.batch.domain.Customer;
+import com.dev.lsy.batchservice.batch.listener.StopWatchjobListener;
+import com.dev.lsy.batchservice.batch.mapper.CustomRowMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;

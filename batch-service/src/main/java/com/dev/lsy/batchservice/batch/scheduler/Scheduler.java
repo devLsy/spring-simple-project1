@@ -1,4 +1,4 @@
-package com.dev.lsy.batchservice.scheduler;
+package com.dev.lsy.batchservice.batch.scheduler;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class Scheduler {
     private final Job batch1;
     private final Job batch2;
 
-    @Scheduled(cron = "0 22 10 * * *")
+    @Scheduled(cron = "0 23 12 * * *")
     public void job1() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
         launcher.run(batch1, new JobParametersBuilder()
                 .addString("date", "param1_" + LocalDateTime.now().toString())
