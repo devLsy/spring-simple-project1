@@ -109,7 +109,7 @@ public class Job1Config {
             public Customer process(Customer item) throws Exception {
 
                 Thread.sleep(20);
-                return new Customer(item.getId(), item.getFirstName().toUpperCase(), item.getLastName().toUpperCase(), item.getBirthdate());
+                return new Customer(item.getId(), item.getFirstName().toUpperCase(), item.getLastName().toUpperCase(), item.getBirthDate());
             }
         };
     }
