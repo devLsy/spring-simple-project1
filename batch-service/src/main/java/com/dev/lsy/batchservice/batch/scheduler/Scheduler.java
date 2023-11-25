@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-//@Component
-//@EnableScheduling
+@Component
+@EnableScheduling
 @Slf4j
 @RequiredArgsConstructor
 public class Scheduler {
@@ -25,7 +25,7 @@ public class Scheduler {
     private final Job batch1;
     private final Job batch2;
 
-    @Scheduled(cron = "0 05 17 * * *")
+    @Scheduled(cron = "0 56 12 * * *")
     public void job1() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
         launcher.run(batch1, new JobParametersBuilder()
                 .addString("date", "param1_" + LocalDateTime.now().toString())
