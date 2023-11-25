@@ -15,7 +15,7 @@ spring:
   batch:
     jdbc:
       initialize-schema: always
-    job:
+#    job:
 #      names: ${job.name:NONE}
 #      enabled: false
 

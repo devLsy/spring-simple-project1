@@ -54,30 +54,4 @@ public class Job2Config {
                 .tasklet(new CustomTasklet())
                 .build();
     }
-
-    /**
-     * 동기 reader
-     * @return
-     */
-    @Bean
-    public JdbcPagingItemReader<Customer> pagingItemReader2() {
-        JdbcPagingItemReader<Customer> reader = new JdbcPagingItemReader<>();
-
-        reader.setDataSource(dataSource);
-        reader.setFetchSize(300);
-        reader.setRowMapper(new CustomRowMapper());
-
-        MySqlPagingQueryProvider queryProvider = new MySqlPagingQueryProvider();
-        queryProvider.setSelectClause("id, first_name, last_name, birthdate");
-        queryProvider.setFromClause("from customer2");
-
-        Map<String, Order> sortKeys = new HashMap<>(1);
-
-        sortKeys.put("id", Order.ASCENDING);
-
-        queryProvider.setSortKeys(sortKeys);
-        reader.setQueryProvider(queryProvider);
-
-        return reader;
-    }
 }
