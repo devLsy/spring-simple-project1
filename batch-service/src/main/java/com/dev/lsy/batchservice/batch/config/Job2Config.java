@@ -51,7 +51,7 @@ public class Job2Config {
     @Bean
     public Step batchStep2() throws Exception {
         return stepBuilderFactory.get("batchStep2")
-                .tasklet(new CustomTasklet())
+                .tasklet(new CustomTasklet(jdbc))
                 .build();
     }
 }

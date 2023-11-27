@@ -47,7 +47,6 @@ public class Job1Config {
                 .start(batchStep1())
                 .listener(new StopWatchjobListener())
                 .build();
-        //batch
     }
 
     /**
