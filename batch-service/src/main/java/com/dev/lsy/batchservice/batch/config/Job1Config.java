@@ -109,7 +109,7 @@ public class Job1Config {
             public Customer process(Customer item) throws Exception {
 
                 Thread.sleep(20);
-                return new Customer(item.getId(), item.getFirstName().toUpperCase(), item.getLastName().toUpperCase(), item.getBirthdate());
+                return new Customer(item.getId(), item.getFirstName().toUpperCase(), item.getLastName().toUpperCase(), item.getBirthDate());
             }
         };
     }
@@ -123,7 +123,7 @@ public class Job1Config {
         JdbcBatchItemWriter<Customer> itemWriter = new JdbcBatchItemWriter<>();
 
         itemWriter.setDataSource(dataSource);
-        itemWriter.setSql("insert into customer2 values (:id, :firstName, :lastName, :birthdate)");
+        itemWriter.setSql("insert into customer2 values (:id, :birthDate, :firstName, :lastName)");
         itemWriter.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider());
         itemWriter.afterPropertiesSet();
 

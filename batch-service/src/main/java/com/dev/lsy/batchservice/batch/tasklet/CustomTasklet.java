@@ -49,7 +49,7 @@ public class CustomTasklet implements Tasklet {
             newCustomer.setId(customer.getId());
             newCustomer.setFirstName(customer.getFirstName() + "수정");
             newCustomer.setLastName(customer.getLastName() + "수정");
-            newCustomer.setBirthdate(customer.getBirthdate());
+            newCustomer.setBirthDate(customer.getBirthDate());
             newCustomerList.add(newCustomer);
         }
 
